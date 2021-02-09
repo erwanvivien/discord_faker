@@ -20,7 +20,7 @@ from sqlite3 import Error
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(
-    filename='/mnt/d/dev/python/discord.log', encoding='utf-8', mode='w')
+    filename='discord.log', encoding='utf-8', mode='w')
 handler.setFormatter(logging.Formatter(
     '%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
@@ -49,7 +49,7 @@ def create_table(conn, create_table_sql):
         exit()
 
 
-DB_PATH = r"/mnt/d/dev/python/guilds.db"
+DB_PATH = r"guilds.db"
 conn = create_connection(DB_PATH)
 sql_create_guilds_table = """ CREATE TABLE IF NOT EXISTS guilds (
                                         id integer PRIMARY KEY,
@@ -270,8 +270,11 @@ async def best_name(name, context):
 
         # print(mem_user.lower() + ' - ' + name.lower())
         namelen = len(name)
-        mem_user = mem_user[:namelen]
-        li.append(levenshtein(mem_user.lower(), name.lower()))
+        mem = mem_user[:namelen]
+        if len(name) < len(mem_user):
+            li.append(100)
+        else:
+            li.append(levenshtein(mem_user.lower(), name.lower()))
         if min == -1 or li[i] <= li[min]:
             min = i
 
@@ -298,7 +301,7 @@ async def parse_args(context, *args):
                                                     type=ActivityType.watching))
         db_new(context.guild.id, context.guild.name)
 
-    # await context.message.delete()
+    await context.message.delete()
     print("Didn't delete (debug purpose)")
 
     name = None
