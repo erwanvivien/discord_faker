@@ -2,8 +2,10 @@
 A simple fake bot for discord
 
 This is kind of my worst code...
+I still feel some pain while reading this $@~# file 🤣
 
-I feel some pain still while reading this $@~# file 🤣
+[If you want to invite the faker bot](https://discord.com/api/oauth2/authorize?client_id=775425858558885888&permissions=537017408&scope=bot) you obviously can :)
+
 
 ## What it does.
 It's a parody/impersonate bot, you type in ``fake "name" message is here`` and it will grab the username that matches the most the ``"name"`` 
