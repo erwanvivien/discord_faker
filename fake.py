@@ -75,8 +75,20 @@ API_ENDPOINT = 'https://discord.com/api/v6'
 bot = commands.Bot(command_prefix='$')
 bot.remove_command('help')
 
-token = "Nzc4OTQxNTI0NTc0NDcwMTY0.X7ZT0w.MinGWtKnEmTwIEvmJgCEEplR1ss"
-token = "Nzc1NDI1ODU4NTU4ODg1ODg4.X6mJmw.BU9R_UPkf8zuSEbMh7GaM0NAvOA"
+
+def get_content(file):
+    # Read file content
+    try:
+        file = open(file, "r")
+        s = file.read()
+        file.close()
+    except Exception as error:
+        return ""
+    return s
+
+
+token_dev = get_content("token_dev")
+token = get_content("token")
 
 
 def pseudo_from_id(id):
